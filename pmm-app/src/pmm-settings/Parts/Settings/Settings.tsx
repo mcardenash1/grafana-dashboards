@@ -14,11 +14,7 @@ import './Settings.scss';
 
 const { Panel } = Collapse;
 
-const dataRetentionOptions = [
-  { value: 'h', label: 'Hours' },
-  { value: 'm', label: 'Minutes' },
-  { value: 's', label: 'Seconds' },
-];
+const dataRetentionOptions = [{ value: 'h', label: 'Hours' }, { value: 'm', label: 'Minutes' }, { value: 's', label: 'Seconds' }];
 const marks = {
   0: 'Low',
   1: 'Medium',
@@ -113,7 +109,7 @@ const SettingsPart = props => {
       onSubmit={() => {}}
       render={(): ReactElement => {
         const { form, handleSubmit } = useForm({
-          onSubmit: onSubmit,
+          onSubmit,
           validate: () => undefined,
         });
 
@@ -124,14 +120,15 @@ const SettingsPart = props => {
           const [count, units] = [settings.data_retention.slice(0, -1), settings.data_retention.slice(-1)];
           const sliderValue = getMetricsResolutionValues(settings.metrics_resolutions);
 
-          form.initialize(
-            Object.assign(settings, {
+          form.initialize({
+            ...settings,
+            ...{
               data_retention_count: count,
               data_retention_units: units,
               metrics_resolutions_slider: sliderValue,
               updates_disabled: !settings.updates_disabled,
-            })
-          );
+            },
+          });
         }, [settings]);
 
         // @ts-ignore
