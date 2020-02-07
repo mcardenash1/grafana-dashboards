@@ -271,7 +271,7 @@ export class PanelCtrl extends MetricsPanelCtrl {
 
   private resetUrl($scope) {
     const filters = $scope.qanParams.filters;
-    const data = {...$scope.qanParams};
+    const data = { ...$scope.qanParams };
     delete data.filters;
     const query = this.encodeData(data);
     $scope.url =
