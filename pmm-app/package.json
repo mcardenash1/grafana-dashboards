@@ -8,7 +8,8 @@
     "test": "grafana-toolkit plugin:test --updateSnapshot",
     "coverage": "grafana-toolkit plugin:test --coverage",
     "dev": "grafana-toolkit plugin:dev",
-    "watch": "grafana-toolkit plugin:dev --watch"
+    "watch": "grafana-toolkit plugin:dev --watch",
+    "docker:connect": "docker run -d -p 80:80 -p 443:443 -v $(pwd):/var/lib/grafana/plugins/ perconalab/pmm-server:dev-latest"
   },
   "bin": {
     "toolkit": "node_modules/grafana/packages/grafana-toolkit/bin/grafana-toolkit.js"
