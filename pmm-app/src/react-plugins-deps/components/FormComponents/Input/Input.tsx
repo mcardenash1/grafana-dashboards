@@ -21,7 +21,7 @@ export const InputField = ({ name, placeholder, required, form, style, wrapperSt
   // // @ts-ignore
   const { input, meta } = useField(name, form);
   return (
-    <div className={'input-field-wrapper'} style={wrapperStyle || {}}>
+    <div className="input-field-wrapper" style={wrapperStyle || {}}>
       <input
         {...input}
         type="text"
@@ -31,7 +31,7 @@ export const InputField = ({ name, placeholder, required, form, style, wrapperSt
         readOnly={readonly}
         className="input-field input-field--dark"
       />
-      {meta.error && meta.touched && <span className={'error-message'}>{meta.error}</span>}
+      {meta.error && meta.touched && <span className="error-message">{meta.error}</span>}
     </div>
   );
 };

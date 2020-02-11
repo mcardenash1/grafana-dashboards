@@ -25,7 +25,7 @@ export const VerticalFormWrapper = (props: VerticalFormWrapperInterface) => {
       alignLabel = 'center';
   }
   return (
-    <Row style={{ color: 'white', marginBottom: '10px', display: 'flex', alignItems: alignLabel }} align={'middle'}>
+    <Row style={{ color: 'white', marginBottom: '10px', display: 'flex', alignItems: alignLabel }} align="middle">
       <Col span={3} style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '20px' }}>
         <span>{props.label}</span>
         <span>{props.tooltip || ''}</span>

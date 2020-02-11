@@ -41,12 +41,12 @@ const UploadSSH = props => {
           <form onSubmit={handleSubmit}>
             <>
               <VerticalFormWrapper
-                label={'SSH key'}
-                tooltip={<PluginTooltip linkText={'Read more'} url={'#'} text={'Public SSH key to let you login into the server using SSH.'} />}
-                element={<TextAreaField name={'ssh_key'} form={form} placeholder="Enter ssh key" style={{ width: '100%' }} />}
-                alignLabel={'top'}
+                label="SSH key"
+                tooltip={<PluginTooltip linkText="Read more" url="#" text="Public SSH key to let you login into the server using SSH." />}
+                element={<TextAreaField name="ssh_key" form={form} placeholder="Enter ssh key" style={{ width: '100%' }} />}
+                alignLabel="top"
               />
-              <ButtonElement loading={loading} text={'Apply SSH key'} />
+              <ButtonElement loading={loading} text="Apply SSH key" />
             </>
           </form>
         );

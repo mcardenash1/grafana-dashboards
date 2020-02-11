@@ -2,6 +2,7 @@ import { MetricsPanelCtrl } from 'grafana/app/plugins/sdk';
 import config from 'grafana/app/core/config';
 import AppEvents from 'grafana/app/core/app_events';
 import _ from 'lodash';
+import any = jasmine.any;
 
 const filtersList = [
   'var-agent_id',
@@ -24,7 +25,7 @@ const filtersList = [
 ];
 
 export class PanelCtrl extends MetricsPanelCtrl {
-  static template = `<iframe ng-src="{{trustSrc(url)}}" id="iframe-qan" style="width: 100%; height: 400px; border: 0;" scrolling="no" />`;
+  static template = '<iframe ng-src="{{trustSrc(url)}}" id="iframe-qan" style="width: 100%; height: 400px; border: 0;" scrolling="no" />';
 
   /** @ngInject */
   constructor($scope, $injector, templateSrv, $sce) {
@@ -102,7 +103,7 @@ export class PanelCtrl extends MetricsPanelCtrl {
       frame.height(`${h + 100}px`);
       panel.height(`${h + 150}px`);
 
-      panelContent.height(`inherit`);
+      panelContent.height('inherit');
       panelContent[0].style.padding = '0 0 10px';
     };
     // init url
@@ -171,7 +172,14 @@ export class PanelCtrl extends MetricsPanelCtrl {
   }
 
   // TODO: add strict urlParams presence check
-  private reloadQuery(window, $scope, type = '', urlParams: {}) {
+  private reloadQuery(
+    window,
+    $scope,
+    type = '',
+    urlParams: {
+      queryID: string;
+    }
+  ) {
     const existedParams = this.getJsonFromUrl(window.location);
 
     [...Object.keys(existedParams), ...Object.keys(urlParams)].forEach(param => {
@@ -182,6 +190,7 @@ export class PanelCtrl extends MetricsPanelCtrl {
       }
     });
     if (type && urlParams.queryID) {
+      // @ts-ignore
       existedParams.type = type;
     }
     const templateVariables = this.templateSrv.variables;
@@ -244,7 +253,9 @@ export class PanelCtrl extends MetricsPanelCtrl {
 
   private getJsonFromUrl(url: URL) {
     const query = url.search.substr(1);
-    const result = {};
+    const result = {
+      type: any,
+    };
     query.split('&').forEach(part => {
       const item = part.split('=');
       if (result[item[0]]) {
